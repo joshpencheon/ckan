@@ -1,0 +1,3 @@
+[submodule "datagovuk_publish"]
+	path = datagovuk_publish
+	url = https://github.com/joshpencheon/datagovuk_publish
