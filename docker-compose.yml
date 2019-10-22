@@ -1,11 +1,19 @@
-# docker-compose build && docker-compose up -d
-# If "docker-compose logs ckan" shows DB not ready, run "docker-compose restart ckan" a few times.
+# When changing (note .env file too):
 #
+#   docker-compose build && docker-compose up -d
+#
+# If "docker-compose logs ckan" shows DB not ready, run "docker-compose restart ckan" a few times.
 # Once running, set up publish db:
 #
-# docker exec -it datagovuk_publish bin/rails db:setup
+#   docker exec -it datagovuk_publish bin/rails db:setup
 #
+# Set up CKAN admin account, to access an API token:
 #
+#   docker exec -it ckan /usr/local/bin/ckan-paster --plugin=ckan sysadmin -c /etc/ckan/production.ini firstname.lastname
+#
+# Populate CKAN as deemed appropriate.
+#
+#  
 version: "3"
 
 volumes:
