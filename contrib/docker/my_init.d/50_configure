@@ -26,7 +26,8 @@ write_config () {
       "ckan.storage_path = /var/lib/ckan" \
       "email_to = disabled@example.com" \
       "error_email_from = ckan@$(hostname -f)" \
-      "ckan.site_url = http://192.168.0.6"
+      "ckan.site_url = http://192.168.0.6" \
+      "ckan.max_resource_size = ${CKAN_MAX_UPLOAD_SIZE_MB}"
 
   if [ -n "$ERROR_EMAIL" ]; then
     sed -i -e "s&^#email_to.*&email_to = ${ERROR_EMAIL}&" "$CONFIG"
