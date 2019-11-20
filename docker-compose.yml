@@ -3,6 +3,9 @@
 #   docker-compose build && docker-compose up -d
 #
 # If "docker-compose logs ckan" shows DB not ready, run "docker-compose restart ckan" a few times.
+#
+# ======= SETUP ========
+#
 # Once running, set up publish db:
 #
 #   docker exec -it datagovuk_publish bin/rails db:setup
@@ -17,7 +20,20 @@
 #
 # Populate CKAN as deemed appropriate.
 #
-#  
+#   ... e.g. internal tools `rake ckan:load:organisations`, `rake ckan:load:resources`, etc.
+#
+# Sync from CKAN into Postgres / elasticsearch:
+#
+#   docker exec -it datagovuk_publish bin/rails runner CKAN::V26::CKANOrgSyncWorker.new.perform
+#   docker exec -it datagovuk_publish bin/rails runner CKAN::V26::PackageSyncWorker.new.perform
+#   docker exec -it datagovuk_publish bundle exec sidekiq
+#
+# Access:
+#
+#    Find app      at http://localhost:3000
+#    Publish app   at http://localhost:3001
+#    ckan directly at http://localhost
+#
 version: "3"
 
 volumes:
