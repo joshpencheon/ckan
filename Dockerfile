@@ -28,6 +28,10 @@ RUN virtualenv $CKAN_HOME
 RUN mkdir -p $CKAN_HOME $CKAN_CONFIG $CKAN_DATA
 RUN chown www-data:www-data $CKAN_DATA
 
+# Ensure a recent-enough version of setuptools is used, to prevent
+# obscure EntryPoint errors when trying to load Apache WSGI app.
+RUN $CKAN_HOME/bin/pip install setuptools==20.4
+
 ADD ./requirements.txt $CKAN_HOME/src/ckan/requirements.txt
 RUN $CKAN_HOME/bin/pip install -r $CKAN_HOME/src/ckan/requirements.txt
 ADD . $CKAN_HOME/src/ckan/
