@@ -16,7 +16,7 @@
 #
 # Set up CKAN admin account, to access an API token:
 #
-#   docker exec -it ckan /usr/lib/ckan/default/bin/paster --plugin=ckan sysadmin -c /etc/ckan/default/ckan.ini add firstname.lastname
+#   docker exec -it gov_ckan /usr/lib/ckan/default/bin/paster --plugin=ckan sysadmin -c /etc/ckan/default/ckan.ini add firstname.lastname
 #
 # Populate CKAN as deemed appropriate.
 #
